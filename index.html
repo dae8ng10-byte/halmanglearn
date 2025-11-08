@@ -24,12 +24,35 @@
         </div>
         <button id="start-next-mission-btn">미수집 미션 시작</button>
 
-<div id="reward-section" style="display: none;">
-    <img src="./money.png" alt="야시장 바우처" style="max-width: 200px; margin: 10px auto; display: block;">
-    <button id="show-voucher-info-btn">바우처 교환 안내 보기</button>
-</div>
+        <div id="reward-section" style="display: none;">
+            <p id="reward-message" style="font-weight: bold; color: #f4511e; margin-bottom: 5px;">🎉 모든 미션 수행 완료 보상! 🎉</p> 
+            <img src="./money.png" alt="야시장 바우처" style="max-width: 200px; margin: 10px auto; display: block;">
+            <button id="show-voucher-info-btn">설문대할MONEY 교환 안내 보기</button>
+        </div>
     </div>
 
+    <div id="voucher-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>💰 설문대할MONEY 교환 안내 💰</h2>
+            <div id="voucher-info-content">
+                <p><b>✨ 모든 미션을 완료하신 가족에게 드리는 특별 보상입니다!</b></p>
+                <hr>
+                <p class="mission-text">
+                    ✅ <b>상품:</b> 동문 야시장에서 사용 가능한 가족당 1만원권 바우처 (설문대할MONEY)
+                </p>
+                <p class="mission-text">
+                    ✅ <b>교환 장소:</b> 제주4.3평화공원 내 안내 부스 (미션 최종 장소)
+                </p>
+                <p class="mission-text">
+                    ✅ <b>교환 방법:</b> 현장 운영 요원에게 이 완료 화면을 보여주시면 됩니다.
+                </p>
+                <p class="mission-text" style="color: #1e88e5;">
+                    <b>*주의:</b> 반드시 가족 단위로 확인하며, 한 가족당 1회 지급됩니다.
+                </p>
+            </div>
+            <button id="close-voucher-modal-btn" style="background-color: #f4511e; color: white;">닫기</button>
+        </div>
+    </div>
     <div id="mission-modal" class="modal" style="display: none;">
         <div class="modal-content">
             
@@ -39,16 +62,16 @@
                 <button id="start-quiz-btn">미션 퀴즈 시작</button>
             </div>
 
-          <div id="step-2" style="display: none;">
-    <h3>🧠 할망의 지혜 퀴즈</h3>
-    <p id="quiz-question" class="mission-text"></p>
-    
-    <div class="quiz-control">
-        <input type="text" id="quiz-answer-input" placeholder="답변을 입력하세요">
-        <p id="quiz-feedback" style="color: red;"></p>
-        <button id="continue-after-quiz-btn">다음 단계로</button> 
-    </div>
-</div>
+            <div id="step-2" style="display: none;">
+                <h3>🧠 할망의 지혜 퀴즈</h3>
+                <p id="quiz-question" class="mission-text"></p>
+                
+                <div class="quiz-control">
+                    <input type="text" id="quiz-answer-input" placeholder="답변을 입력하세요">
+                    <p id="quiz-feedback" style="color: red;"></p>
+                    <button id="continue-after-quiz-btn">다음 단계로</button> 
+                </div>
+            </div>
             <div id="step-3" style="display: none;">
                 <h2 id="mission-location">미션 장소</h2>
                 <img id="mission-item-image" src="" alt="미션 아이템" style="max-width: 80%; height: auto; margin: 10px 0;">

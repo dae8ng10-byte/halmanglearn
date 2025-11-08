@@ -51,7 +51,6 @@ let currentMissionIndex = 0;
 let cameraStream = null;
 
 // --- 2. DOM 요소 선택 ---
-// ... (DOM 요소 선택은 이전과 동일) ...
 const introScreen = document.getElementById('intro-screen');
 const mainScreen = document.getElementById('main-mission-screen');
 const dialogueText = document.getElementById('dialogue-text');
@@ -71,7 +70,7 @@ const startQuizBtn = document.getElementById('start-quiz-btn');
 const quizQuestion = document.getElementById('quiz-question');
 const quizAnswerInput = document.getElementById('quiz-answer-input');
 const quizFeedback = document.getElementById('quiz-feedback');
-const continueAfterQuizBtn = document.getElementById('continue-after-quiz-btn'); // Step 2 버튼
+const continueAfterQuizBtn = document.getElementById('continue-after-quiz-btn'); 
 
 const missionLocationText = document.getElementById('mission-location');
 const missionItemImage = document.getElementById('mission-item-image');
@@ -83,8 +82,14 @@ const cameraCanvas = document.getElementById('camera-canvas');
 const takePhotoBtn = document.getElementById('take-photo-btn');
 const collectItemBtn = document.getElementById('collect-item-btn');
 
+// ⭐ 추가된 DOM 요소 선택 ⭐
+const showVoucherInfoBtn = document.getElementById('show-voucher-info-btn');
+const voucherModal = document.getElementById('voucher-modal');
+const closeVoucherModalBtn = document.getElementById('close-voucher-modal-btn');
+// ⭐ END: 추가된 DOM 요소 선택 ⭐
 
-// --- 3. 인트로 화면 로직 (동일) ---
+
+// --- 3. 인트로 화면 로직 ---
 function showNextDialogue() {
     if (dialogueIndex < dialogues.length) {
         dialogueText.textContent = dialogues[dialogueIndex];
@@ -99,7 +104,7 @@ nextDialogueBtn.addEventListener('click', showNextDialogue);
 document.addEventListener('DOMContentLoaded', showNextDialogue);
 
 
-// --- 4. 메인 미션 화면 로직 (동일) ---
+// --- 4. 메인 미션 화면 로직 ---
 function renderMissionStatus() {
     const missionStatusList = document.getElementById('mission-status-list');
     const rewardSection = document.getElementById('reward-section');
@@ -132,7 +137,7 @@ startNextMissionBtn.addEventListener('click', () => {
     missionTitleInfo.textContent = `미션: ${nextMission.name}`;
     missionDescInfo.textContent = nextMission.introDescription; 
     
-startAuthBtn.textContent = "아이템 획득";
+    startAuthBtn.textContent = "아이템 획득";
     // 모달 열기 및 Step 1 표시
     modal.style.display = 'flex';
     step1.style.display = 'block'; 
@@ -226,7 +231,7 @@ continueAfterQuizBtn.addEventListener('click', () => {
     }
 });
 
-// Step 3 버튼 ('현장 인증 시작') 클릭 -> Step 4 (카메라 화면) 전환 (동일)
+// Step 3 버튼 ('현장 인증 시작') 클릭 -> Step 4 (카메라 화면) 전환
 startAuthBtn.addEventListener('click', async () => {
     step3.style.display = 'none';
     step4.style.display = 'block'; 
@@ -240,7 +245,7 @@ startAuthBtn.addEventListener('click', async () => {
     }
 });
 
-// --- 카메라로 사진 찍기 기능 추가 (동일) ---
+// --- 카메라로 사진 찍기 기능 추가 ---
 takePhotoBtn.addEventListener('click', () => {
     if (cameraStream) {
         const context = cameraCanvas.getContext('2d');
@@ -263,8 +268,7 @@ takePhotoBtn.addEventListener('click', () => {
     }
 });
 
-// Step 4 버튼 ('아이템 수집 완료') 클릭 (동일)
-// script.js (collectItemBtn.addEventListener 내부)
+// Step 4 버튼 ('아이템 수집 완료') 클릭
 collectItemBtn.addEventListener('click', () => {
     missions[currentMissionIndex].isCollected = true;
     
@@ -273,9 +277,23 @@ collectItemBtn.addEventListener('click', () => {
         cameraStream = null;
     }
     
-    // 이 부분을 추가했습니다.
     startAuthBtn.textContent = "아이템 획득"; 
     
     modal.style.display = 'none';
     renderMissionStatus();
 });
+
+
+// ⭐ [START] 설문대할MONEY 교환 안내 모달 로직 추가 ⭐
+
+// '설문대할MONEY 교환 안내 보기' 버튼 클릭 이벤트
+showVoucherInfoBtn.addEventListener('click', () => {
+    voucherModal.style.display = 'flex'; // 안내 모달 표시
+});
+
+// 안내 모달 '닫기' 버튼 클릭 이벤트
+closeVoucherModalBtn.addEventListener('click', () => {
+    voucherModal.style.display = 'none'; // 안내 모달 숨김
+});
+
+// ⭐ [END] 설문대할MONEY 교환 안내 모달 로직 추가 ⭐
