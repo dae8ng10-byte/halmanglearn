@@ -178,7 +178,7 @@ continueAfterQuizBtn.addEventListener('click', () => {
              quizFeedback.style.color = 'red';
              return;
         } 
-        quizFeedback.textContent = '답변이 기록되었습니다! 다음 장소로 이동하세요.';
+        quizFeedback.textContent = '답변이 기록되었습니다! 아이템을 획득하세요.';
         quizFeedback.style.color = 'green';
 
         // 1.5초 후 Step 3 (장소/아이템 확인)으로 전환
@@ -210,7 +210,7 @@ continueAfterQuizBtn.addEventListener('click', () => {
     } else if (currentMission.answerType === 'hint-2') {
         
         // M2-2 완료 -> Step 3 (포토 미션 장소)로 전환
-        quizFeedback.textContent = `🎉 두 번째 힌트 획득 완료! 이제 ${currentMission.finalLocation}으로 가세요.`;
+        quizFeedback.textContent = `🎉 두 번째 힌트 획득 완료! 미션 장소를 확인하세요.`;
         quizFeedback.style.color = 'green';
         
         setTimeout(() => {
@@ -264,6 +264,7 @@ takePhotoBtn.addEventListener('click', () => {
 });
 
 // Step 4 버튼 ('아이템 수집 완료') 클릭 (동일)
+// script.js (collectItemBtn.addEventListener 내부)
 collectItemBtn.addEventListener('click', () => {
     missions[currentMissionIndex].isCollected = true;
     
@@ -271,6 +272,9 @@ collectItemBtn.addEventListener('click', () => {
         cameraStream.getTracks().forEach(track => track.stop());
         cameraStream = null;
     }
+    
+    // 이 부분을 추가했습니다.
+    startAuthBtn.textContent = "아이템 획득"; 
     
     modal.style.display = 'none';
     renderMissionStatus();
