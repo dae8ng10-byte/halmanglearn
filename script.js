@@ -132,6 +132,7 @@ startNextMissionBtn.addEventListener('click', () => {
     missionTitleInfo.textContent = `미션: ${nextMission.name}`;
     missionDescInfo.textContent = nextMission.introDescription; 
     
+startAuthBtn.textContent = "아이템 획득";
     // 모달 열기 및 Step 1 표시
     modal.style.display = 'flex';
     step1.style.display = 'block'; 
@@ -202,7 +203,7 @@ continueAfterQuizBtn.addEventListener('click', () => {
         setTimeout(() => {
             // Step 2 팝업 내부 내용만 M2-2 힌트로 변경 (Step 3로 넘어가지 않음)
             quizQuestion.textContent = currentMission.hint2;
-            continueAfterQuizBtn.textContent = "힌트 획득 완료 (최종 장소 확인)";
+            continueAfterQuizBtn.textContent = "힌트 획득 완료 (미션 장소 확인)";
             quizFeedback.textContent = '';
         }, 1500);
 
